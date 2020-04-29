@@ -25,18 +25,22 @@ provider:
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
+  # you can define service wide environment variables here (inside provider)
+# environment:
+#   variable1: value1
+#   DYNAMODB_USER_TABLE: ${self:custom.dynamodb.userTable}
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
+# you can add statements to the Lambda function's IAM Role here (inside provider)
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:ListBucket"
-#        - "dynamodb:Query"
-#        - "dynamodb:PutItem"
+        # - dynamodb:Query
+        # - dynamodb:Scan
+        # - dynamodb:GetItem
+        # - dynamodb:PutItem
+        # - dynamodb:UpdateItem
+        # - dynamodb:DeleteItem
 #      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 #    - Effect: "Allow"
 #      Action:
@@ -49,12 +53,6 @@ provider:
 #          - - "arn:aws:s3:::"
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-#    DYNAMODB_USER_TABLE: ${self:custom.dynamodb.userTable}
-
 # you can add packaging information here
 #package:
 #  include:
